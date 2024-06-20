@@ -1,0 +1,78 @@
+<div class="absolute inset-0 flex min-w-0 flex-col overflow-y-auto" cdkScrollable>
+    <mat-drawer-container class="bg-card">
+        <mat-drawer-content class="flex flex-col">
+            <div class="flex-auto">
+                <!-- Cabeçalho -->
+                <div class="flex flex-auto flex-col justify-between border-b px-6 py-8 sm:flex-row md:flex-col md:px-8">
+                    <div>
+                        <div class="text-4xl font-extrabold leading-none tracking-tight">
+                            Alimentos
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lista de alimentos -->
+                <div class="relative">
+                    @if (alimentos$ | async; as alimentos) {
+                        @if (alimentos.length) {
+                            @for (
+                                alimento of alimentos;
+                                track alimento.id;
+                                let i = $index
+                            ) {
+                                <!-- Group -->
+                                @if (
+                                    i === 0 ||
+                                    alimento.nome.charAt(0) !==
+                                        alimentos[i - 1].nome.charAt(0)
+                                ) {
+                                    <div
+                                        class="text-secondary sticky top-0 z-10 -mt-px border-b border-t bg-gray-50 px-6 py-1 font-medium uppercase dark:bg-gray-900 md:px-8"
+                                    >
+                                        {{ alimento.nome.charAt(0) }}
+                                    </div>
+                                }
+                                <!-- Contact -->
+                                <a
+                                    class="z-20 flex cursor-pointer items-center border-b px-6 py-4 md:px-8"
+                                    [ngClass]="{
+                                        'dark:hover:bg-hover hover:bg-gray-100':
+                                            !alimentoSelecionado ||
+                                            alimentoSelecionado.id !== alimento.id,
+                                        'bg-primary-50 dark:bg-hover':
+                                            alimentoSelecionado &&
+                                            alimentoSelecionado.id === alimento.id,
+                                    }"
+                                    [routerLink]="['./', alimento.id]"
+                                >
+                                    <div
+                                        class="flex h-10 w-10 flex-0 items-center justify-center overflow-hidden rounded-full"
+                                    >
+                                        <div
+                                            class="flex h-full w-full items-center justify-center rounded-full bg-gray-200 text-lg uppercase text-gray-600 dark:bg-gray-700 dark:text-gray-200"
+                                        >
+                                            {{ alimento.nome.charAt(0) }}
+                                        </div>
+                                    </div>
+                                    <div class="ml-4 min-w-0">
+                                        <div
+                                            class="truncate font-medium leading-5"
+                                        >
+                                            {{ alimento.nome }}
+                                        </div>
+                                    </div>
+                                </a>
+                            }
+                        } @else {
+                            <div
+                                class="border-t p-8 text-center text-4xl font-semibold tracking-tight sm:p-16"
+                            >
+                                Nenhum alimento!
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>

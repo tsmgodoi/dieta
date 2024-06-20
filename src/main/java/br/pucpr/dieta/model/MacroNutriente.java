@@ -1,22 +1,31 @@
 package br.pucpr.dieta.model;
 
-public abstract class MacroNutriente {
+import java.math.BigDecimal;
 
-	protected Integer quantidade;
+import com.fasterxml.jackson.annotation.JsonValue;
 
-	public MacroNutriente(Integer quantidade) {
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.MappedSuperclass;
+
+@Embeddable
+@MappedSuperclass
+public abstract class MacroNutriente implements Caloricavel {
+
+	@Column(name = "QUANTIDADE")
+	protected BigDecimal quantidade;
+
+	protected MacroNutriente() {
+		
+	}
+	
+	public MacroNutriente(BigDecimal quantidade) {
 		this.quantidade = quantidade;
 	}
 
-	public Integer quantidade() {
+	@JsonValue
+	public BigDecimal getQuantidade() {
 		return quantidade;
 	}
-
-	/**
-	 * Calcula a quantidade de calorias em Kcal.
-	 * 
-	 * @return a quantidade de calorias em Kcal.
-	 */
-	public abstract Integer calorias();
 
 }

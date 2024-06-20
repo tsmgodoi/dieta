@@ -1,7 +1,7 @@
 {
-    "name": "fuse-angular",
+    "name": "dieta",
     "version": "20.0.0",
-    "description": "Fuse - Angular Admin Template and Starter Project",
+    "description": "Dieta - Cadastre seus alimentos e registre suas refeições diárias",
     "author": "https://themeforest.net/user/srcn",
     "license": "https://themeforest.net/licenses/standard",
     "private": true,

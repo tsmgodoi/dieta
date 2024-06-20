@@ -10,7 +10,7 @@ import { LayoutComponent } from 'app/layout/layout.component';
 export const appRoutes: Route[] = [
 
     // Redirect empty path to '/example'
-    {path: '', pathMatch : 'full', redirectTo: 'example'},
+    {path: '', pathMatch : 'full', redirectTo: 'alimentos'},
 
     // Redirect signed-in user to the '/example'
     //
@@ -74,7 +74,7 @@ export const appRoutes: Route[] = [
             initialData: initialDataResolver
         },
         children: [
-            {path: 'example', loadChildren: () => import('app/modules/admin/example/example.routes')},
+            {path: 'alimentos', loadChildren: () => import('app/modules/dieta/alimentos/alimentos.routes')},
         ]
     }
 ];
