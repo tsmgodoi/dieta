@@ -3,7 +3,8 @@ spring:
     name: dieta
 
   datasource:
-    url: jdbc:h2:file:./data/h2
+    url: jdbc:h2:mem:dieta
+    #url: jdbc:h2:file:./data/h2
 
   h2:
     console:
